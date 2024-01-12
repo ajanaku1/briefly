@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.main {
+.main,
+.main_dark {
   width: 100vw;
   min-height: 100vh;
   position: fixed;
@@ -22,7 +23,18 @@
   top: 0;
 }
 
-.main:after {
+.main_dark:before {
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #000 100%);
+  position: absolute;
+  content: "";
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.main:after,
+.main_dark:after {
   content: "";
   background-image: url("/src/assets/grid.svg");
   z-index: 1;
@@ -59,6 +71,31 @@
   opacity: 0.15;
 }
 
+.gradient_dark {
+  height: fit-content;
+  z-index: 3;
+  width: 100%;
+  max-width: 640px;
+  background-image: radial-gradient(
+      at 27% 37%,
+      hsla(215, 98%, 61%, 1) 0px,
+      transparent 0%
+    ),
+    radial-gradient(at 21% 97%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 99% 52%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
+    radial-gradient(at 29% 10%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
+    radial-gradient(at 96% 97%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
+    radial-gradient(at 50% 33%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
+    radial-gradient(at 53% 79%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  filter: blur(100px) saturate(150%);
+  top: 80px;
+  opacity: 0.15;
+}
+
 @media screen and (max-width: 640px) {
   .main {
     padding: 0;
@@ -67,46 +104,62 @@
 
 /* Tailwind Styles */
 
+* {
+  @apply transition-colors duration-200;
+}
+
 .app {
   @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
 }
 
 .git_btn {
-  @apply rounded-full border border-cyan-700 bg-cyan-700 py-1.5 px-5 text-sm text-white transition-all hover:bg-transparent hover:text-orange-600 hover:border-orange-600;
+  @apply rounded-full border border-cyan-700 dark:border-orange-600 bg-transparent py-1.5 px-5 text-sm text-cyan-700 dark:text-orange-600 transition-all hover:bg-cyan-700 dark:hover:bg-orange-600 hover:text-white dark:hover:text-white hover:border-cyan-700 dark:hover:border-orange-600;
 }
 
 .head_text {
-  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-cyan-700 sm:text-6xl text-center;
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-cyan-700 dark:text-black sm:text-6xl text-center;
 }
 
 .orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-amber-500 dark:from-amber-300 via-orange-600 dark:via-orange-400 to-yellow-500 dark:to-yellow-300 bg-clip-text text-transparent;
 }
 
 .desc {
-  @apply mt-5 text-lg text-gray-500 sm:text-xl text-center max-w-2xl;
+  @apply mt-5 text-lg text-gray-700 dark:text-black sm:text-xl text-center max-w-2xl;
 }
 
 .url_input {
-  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-10 pr-12 text-sm shadow-lg font-satoshi font-medium focus:border-black focus:outline-none focus:ring-0;
+  @apply block w-full rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-400 py-2.5 pl-10 pr-12 text-sm shadow-lg font-satoshi font-medium focus:border-black dark:focus:border-white focus:outline-none focus:ring-0;
 }
 
 .submit_btn {
-  @apply hover:border-gray-700 hover:text-gray-700 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 font-sans text-sm font-medium text-gray-400;
+  @apply hover:border-gray-700 dark:hover:border-white hover:text-gray-700 dark:hover:text-white absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 dark:border-gray-700 font-sans text-sm font-medium text-gray-200 dark:text-gray-700;
 }
 
 .link_card {
-  @apply p-3 flex justify-start items-center flex-row bg-white border border-gray-200 gap-3 rounded-lg cursor-pointer;
+  @apply p-3 flex justify-start items-center flex-row bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-400 gap-3 rounded-lg cursor-pointer;
+}
+
+.history_links {
+  @apply flex-1 font-satoshi text-cyan-500 dark:text-cyan-200 font-medium text-sm truncate;
 }
 
 .copy_btn {
   @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
 }
 
+.article_h {
+  @apply font-satoshi font-bold text-gray-500 dark:text-black text-xl;
+}
+
 .sum_gradient {
-  @apply font-black bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent;
+  @apply font-black bg-gradient-to-r from-orange-600 dark:from-orange-400 to-yellow-500 dark:to-yellow-300 bg-clip-text text-transparent;
 }
 
 .summary_box {
-  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4;
+  @apply rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4;
+}
+
+.theme_switch {
+  @apply absolute top-5 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full cursor-pointer z-50 transition-transform duration-200;
 }

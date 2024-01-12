@@ -5,6 +5,7 @@ Briefly is an open-source web application that leverages the power of OpenAI's G
 ###Easy Summarization: Enter a valid URL to an article, and Briefly will generate a summarized version using OpenAI's GPT-4.
 ###URL History: Browse and access a history of previously summarized articles for quick reference.
 Copy to Clipboard: Easily copy the summarized article URL with a single click.
+###Light && Dark Mode: Easily switch from light to dark mode by clicking on the to center icon
 
 ##Getting Started
 To run the Briefly project locally, follow these steps:
